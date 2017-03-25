@@ -1,0 +1,12 @@
+$themes: map-merge($themes, (
+  dv: map-merge($theme-defaults, (
+    background-color: rgba(0, 15, 45, 0.25),
+    medium-color: #ABB2BF,
+    text-color: #eee,
+    action-color: #0bf,
+    error-color: #d52e1f,
+  ))
+));
+body {
+  color: red;
+}

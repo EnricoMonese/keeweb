@@ -54,7 +54,8 @@ const SettingsGeneralView = Backbone.View.extend({
         sl: Locale.setGenThemeSl,
         wh: Locale.setGenThemeWh,
         te: Locale.setGenThemeTe,
-        hc: Locale.setGenThemeHc
+        hc: Locale.setGenThemeHc,
+        dv: Locale.setGenThemeDv
     },
 
     allLocales: {
