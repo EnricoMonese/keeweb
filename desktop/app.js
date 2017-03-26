@@ -14,6 +14,7 @@ let restartPending = false;
 let mainWindowPosition = {};
 let updateMainWindowPositionTimeout = null;
 const windowPositionFileName = path.join(app.getPath('userData'), 'window-position.json');
+const appSettingsFileName = path.join(app.getPath('userData'), 'app-settings.json');
 
 let htmlPath = process.argv.filter(arg => arg.startsWith('--htmlpath=')).map(arg => arg.replace('--htmlpath=', ''))[0];
 if (!htmlPath) {
@@ -109,12 +110,12 @@ function setAppOptions() {
 }
 
 function createMainWindow() {
+    const titlebarStyle = JSON.parse(fs.readFileSync(appSettingsFileName, 'utf8')).titlebarStyle;
     mainWindow = new electron.BrowserWindow({
         show: false,
         width: 1000, height: 700, minWidth: 700, minHeight: 400,
         icon: path.join(__dirname, 'icon.png'),
-        titleBarStyle: 'hidden-inset',
-        vibrancy: 'ultra-dark'
+        titleBarStyle: titlebarStyle,
         webPreferences: {
             backgroundThrottling: false
         }
@@ -139,6 +140,12 @@ function createMainWindow() {
     });
     mainWindow.on('minimize', () => {
         emitBackboneEvent('launcher-minimize');
+    });
+    mainWindow.on('leave-full-screen', () => {
+        emitBackboneEvent('leave-full-screen');
+    });
+    mainWindow.on('enter-full-screen', () => {
+        emitBackboneEvent('enter-full-screen');
     });
     restoreMainWindowPosition();
 }

@@ -34,6 +34,7 @@ const SettingsGeneralView = Backbone.View.extend({
         'change .settings__general-lock-on-copy': 'changeLockOnCopy',
         'change .settings__general-table-view': 'changeTableView',
         'change .settings__general-colorful-icons': 'changeColorfulIcons',
+        'change .settings__general-titlebar-style': 'changeTitlebarStyle',
         'click .settings__general-update-btn': 'checkUpdate',
         'click .settings__general-restart-btn': 'restartApp',
         'click .settings__general-download-update-btn': 'downloadUpdate',
@@ -82,6 +83,7 @@ const SettingsGeneralView = Backbone.View.extend({
         const updateFound = UpdateModel.instance.get('updateStatus') === 'found';
         const updateManual = UpdateModel.instance.get('updateManual');
         const storageProviders = this.getStorageProviders();
+
         this.renderTemplate({
             themes: this.allThemes,
             activeTheme: AppSettingsModel.instance.get('theme'),
@@ -114,6 +116,8 @@ const SettingsGeneralView = Backbone.View.extend({
             updateManual: updateManual,
             releaseNotesLink: Links.ReleaseNotes,
             colorfulIcons: AppSettingsModel.instance.get('colorfulIcons'),
+            supportsTitleBarStyles: FeatureDetector.supportsTitleBarStyles(),
+            titlebarStyle: AppSettingsModel.instance.get('titlebarStyle'),
             storageProviders: storageProviders
         });
         this.renderProviderViews(storageProviders);
@@ -208,6 +212,11 @@ const SettingsGeneralView = Backbone.View.extend({
     changeFontSize: function(e) {
         const fontSize = +e.target.value;
         AppSettingsModel.instance.set('fontSize', fontSize);
+    },
+
+    changeTitlebarStyle: function(e) {
+        const titlebarStyle = e.target.value;
+        AppSettingsModel.instance.set('titlebarStyle', titlebarStyle);
     },
 
     changeClipboard: function(e) {
