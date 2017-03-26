@@ -357,15 +357,15 @@ const AppView = Backbone.View.extend({
     },
 
     enterFullScreen: function () {
-        _.forEach(document.getElementsByClassName("app__menu show")[0].classList, cls => {
+        _.forEach(document.getElementsByClassName('app__menu show')[0].classList, cls => {
             if (/^titlebar-style/.test(cls)) {
-                document.getElementsByClassName("app__menu show")[0].classList.remove(cls);
+                document.getElementsByClassName('app__menu show')[0].classList.remove(cls);
             }
         });
     },
 
     leaveFullScreen: function () {
-        document.getElementsByClassName("app__menu show")[0].classList.add('titlebar-style-' + this.titlebarStyle);
+        document.getElementsByClassName('app__menu show')[0].classList.add('titlebar-style-' + this.titlebarStyle);
     },
 
     escPressed: function() {
