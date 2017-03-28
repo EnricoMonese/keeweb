@@ -1,4 +1,10 @@
 <div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
     <h1><i class="fa fa-cog"></i> {{res 'setGenTitle'}}</h1>
 
     {{#if updateWaitingReload}}
@@ -74,6 +80,21 @@
       </select>
     </div>
     {{/if}}
+    <div>
+      <label for="settings__general-vibrancy">Vibrancy:</label>
+      <select class="settings__general-vibrancy settings__select input-base" id="settings__general-vibrancy">
+        <option value="appearance-based" {{#ifeq vibrancy 'appearance-based'}}selected{{/ifeq}}>appearance-based</option>
+        <option value="light" {{#ifeq vibrancy 'light'}}selected{{/ifeq}}>light</option>
+        <option value="dark" {{#ifeq vibrancy 'dark'}}selected{{/ifeq}}>dark</option>
+        <option value="titlebar" {{#ifeq vibrancy 'titlebar'}}selected{{/ifeq}}>titlebar</option>
+        <option value="selection" {{#ifeq vibrancy 'selection'}}selected{{/ifeq}}>selection</option>
+        <option value="menu" {{#ifeq vibrancy 'menu'}}selected{{/ifeq}}>menu</option>
+        <option value="popover" {{#ifeq vibrancy 'popover'}}selected{{/ifeq}}>popover</option>
+        <option value="sidebar" {{#ifeq vibrancy 'sidebar'}}selected{{/ifeq}}>sidebar</option>
+        <option value="medium-light" {{#ifeq vibrancy 'medium-light'}}selected{{/ifeq}}>medium-light</option>
+        <option value="ultra-dark" {{#ifeq vibrancy 'ultra-dark'}}selected{{/ifeq}}>ultra-dark</option>
+      </select>
+    </div>
     <div>
         <input type="checkbox" class="settings__input input-base settings__general-expand" id="settings__general-expand" {{#if expandGroups}}checked{{/if}} />
         <label for="settings__general-expand">{{res 'setGenShowSubgroups'}}</label>

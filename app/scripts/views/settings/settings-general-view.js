@@ -35,6 +35,7 @@ const SettingsGeneralView = Backbone.View.extend({
         'change .settings__general-table-view': 'changeTableView',
         'change .settings__general-colorful-icons': 'changeColorfulIcons',
         'change .settings__general-titlebar-style': 'changeTitlebarStyle',
+        'change .settings__general-vibrancy': 'changeVibrancy',
         'click .settings__general-update-btn': 'checkUpdate',
         'click .settings__general-restart-btn': 'restartApp',
         'click .settings__general-download-update-btn': 'downloadUpdate',
@@ -118,6 +119,7 @@ const SettingsGeneralView = Backbone.View.extend({
             colorfulIcons: AppSettingsModel.instance.get('colorfulIcons'),
             supportsTitleBarStyles: FeatureDetector.supportsTitleBarStyles(),
             titlebarStyle: AppSettingsModel.instance.get('titlebarStyle'),
+            vibrancy: AppSettingsModel.instance.get('vibrancy'),
             storageProviders: storageProviders
         });
         this.renderProviderViews(storageProviders);
@@ -217,6 +219,12 @@ const SettingsGeneralView = Backbone.View.extend({
     changeTitlebarStyle: function(e) {
         const titlebarStyle = e.target.value;
         AppSettingsModel.instance.set('titlebarStyle', titlebarStyle);
+    },
+
+    changeVibrancy: function(e) {
+        const vibrancy = e.target.value;
+        AppSettingsModel.instance.set('vibrancy', vibrancy);
+        Launcher.setVibrancy(vibrancy);
     },
 
     changeClipboard: function(e) {

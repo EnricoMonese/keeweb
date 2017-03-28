@@ -110,13 +110,15 @@ function setAppOptions() {
 }
 
 function createMainWindow() {
-    const titlebarStyle = JSON.parse(fs.readFileSync(appSettingsFileName, 'utf8')).titlebarStyle;
+    const appSettings = JSON.parse(fs.readFileSync(appSettingsFileName, 'utf8'));
+    const titlebarStyle = appSettings.titlebarStyle;
+    const vb = appSettings.vibrancy;
     mainWindow = new electron.BrowserWindow({
         show: false,
         width: 1000, height: 700, minWidth: 700, minHeight: 400,
         icon: path.join(__dirname, 'icon.png'),
         titleBarStyle: titlebarStyle,
-        vibrancy: 'ultra-dark',
+        vibrancy: vb,
         webPreferences: {
             backgroundThrottling: false
         }

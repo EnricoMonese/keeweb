@@ -218,6 +218,10 @@ if (window.process && window.process.versions && window.process.versions.electro
             }
             return ps;
         },
+        setVibrancy: function (type) {
+          const win = this.getMainWindow();
+          win.setVibrancy(type);
+        },
         platform: function() {
             return process.platform;
         }

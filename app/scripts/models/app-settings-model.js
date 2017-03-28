@@ -20,6 +20,7 @@ const AppSettingsModel = Backbone.Model.extend({
         tableView: false,
         colorfulIcons: false,
         titlebarStyle: 'default',
+        vibrancy: '',
         lockOnMinimize: true,
         lockOnCopy: false,
         helpTipCopyShown: false,
