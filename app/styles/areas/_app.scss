@@ -96,6 +96,8 @@
     overflow: hidden;
     padding: $base-spacing;
     position: relative;
+    background-color: #ffffff;
+    color: #333;
     @include mobile {
       width: 100vw;
       padding: $base-padding;
