@@ -116,6 +116,7 @@ function createMainWindow() {
         width: 1000, height: 700, minWidth: 700, minHeight: 400,
         icon: path.join(__dirname, 'icon.png'),
         titleBarStyle: titlebarStyle,
+        vibrancy: 'ultra-dark',
         webPreferences: {
             backgroundThrottling: false
         }
