@@ -10,7 +10,6 @@ const RuntimeInfo = require('../../comp/runtime-info');
 const Alerts = require('../../comp/alerts');
 const SettingsManager = require('../../comp/settings-manager');
 const Storage = require('../../storage');
-const FeatureDetector = require('../../util/feature-detector');
 const Locale = require('../../util/locale');
 const Links = require('../../const/links');
 const AutoType = require('../../auto-type');
@@ -30,7 +29,6 @@ const SettingsGeneralView = Backbone.View.extend({
         'change .settings__general-lock-on-minimize': 'changeLockOnMinimize',
         'change .settings__general-lock-on-copy': 'changeLockOnCopy',
         'change .settings__general-lock-on-auto-type': 'changeLockOnAutoType',
-        'change .settings__general-table-view': 'changeTableView',
         'click .settings__general-update-btn': 'checkUpdate',
         'click .settings__general-restart-btn': 'restartApp',
         'click .settings__general-download-update-btn': 'downloadUpdate',
@@ -75,8 +73,6 @@ const SettingsGeneralView = Backbone.View.extend({
             lockOnMinimize: Launcher && AppSettingsModel.instance.get('lockOnMinimize'),
             lockOnCopy: AppSettingsModel.instance.get('lockOnCopy'),
             lockOnAutoType: AppSettingsModel.instance.get('lockOnAutoType'),
-            tableView: AppSettingsModel.instance.get('tableView'),
-            canSetTableView: !FeatureDetector.isMobile,
             autoUpdate: Updater.getAutoUpdateType(),
             updateInProgress: Updater.updateInProgress(),
             updateInfo: this.getUpdateInfo(),
@@ -223,12 +219,6 @@ const SettingsGeneralView = Backbone.View.extend({
     changeLockOnAutoType: function(e) {
         const lockOnAutoType = e.target.checked || false;
         AppSettingsModel.instance.set('lockOnAutoType', lockOnAutoType);
-    },
-
-    changeTableView: function(e) {
-        const tableView = e.target.checked || false;
-        AppSettingsModel.instance.set('tableView', tableView);
-        Backbone.trigger('refresh');
     },
 
     restartApp: function() {
