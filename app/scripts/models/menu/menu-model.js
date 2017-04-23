@@ -52,8 +52,8 @@ const MenuModel = Backbone.Model.extend({
         this.menus.settings = new MenuSectionCollection([
             this.generalSection,
             this.shortcutsSection,
-            this.pluginsSection,
             this.themingSection,
+            this.pluginsSection,
             this.aboutSection,
             this.helpSection,
             this.filesSection
