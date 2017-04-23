@@ -18,6 +18,7 @@ const Launcher = require('./comp/launcher');
 const FeatureDetector = require('./util/feature-detector');
 const KdbxwebInit = require('./util/kdbxweb-init');
 const Locale = require('./util/locale');
+const ThemingManager = require('./comp/theming-manager');
 
 const ready = Launcher && Launcher.ready || $;
 
@@ -54,6 +55,7 @@ ready(() => {
         IdleTracker.init();
         PopupNotifier.init();
         KdbxwebInit.init();
+        ThemingManager.init();
         window.kw = ExportApi;
         return PluginManager.init();
     }

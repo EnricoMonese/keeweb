@@ -4,7 +4,7 @@ const AppSettingsModel = require('../../models/app-settings-model');
 const FeatureDetector = require('../../util/feature-detector');
 const Locale = require('../../util/locale');
 // const Logger = require('../../util/logger');
-const ChangeCssUtil = require('../../util/change-css-util');
+const ThemingManager = require('../../comp/theming-manager');
 
 const SettingsThemeView = Backbone.View.extend({
     template: require('templates/settings/settings-theming.hbs'),
@@ -29,7 +29,6 @@ const SettingsThemeView = Backbone.View.extend({
             canSetTableView: !FeatureDetector.isMobile,
             tableView: AppSettingsModel.instance.get('tableView')
         });
-        ChangeCssUtil.init();
     },
 
     changeTheme: function(e) {
@@ -65,7 +64,7 @@ const SettingsThemeView = Backbone.View.extend({
         if (!colorText) {
             return;
         }
-        ChangeCssUtil.changeCss('.app', 'background-color', colorText);
+        ThemingManager.changeCss('.app', 'background-color', colorText);
     }
 
 });
