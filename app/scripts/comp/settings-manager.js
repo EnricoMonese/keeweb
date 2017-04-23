@@ -9,26 +9,10 @@ const SettingsManager = {
         'en': 'English'
     },
 
-    allThemes: {
-        fb: 'setGenThemeFb',
-        db: 'setGenThemeDb',
-        sd: 'setGenThemeSd',
-        sl: 'setGenThemeSl',
-        wh: 'setGenThemeWh',
-        te: 'setGenThemeTe',
-        hc: 'setGenThemeHc'
-    },
-
     customLocales: {
     },
 
     setBySettings: function(settings) {
-        if (settings.get('theme')) {
-            this.setTheme(settings.get('theme'));
-        }
-        if (settings.get('fontSize')) {
-            this.setFontSize(settings.get('fontSize'));
-        }
         const locale = settings.get('locale');
         try {
             if (locale) {
@@ -37,27 +21,6 @@ const SettingsManager = {
                 this.setLocale(this.getBrowserLocale());
             }
         } catch (ex) {}
-    },
-
-    setTheme: function(theme) {
-        _.forEach(document.body.classList, cls => {
-            if (/^th\-/.test(cls)) {
-                document.body.classList.remove(cls);
-            }
-        });
-        document.body.classList.add(this.getThemeClass(theme));
-        const metaThemeColor = document.head.querySelector('meta[name=theme-color]');
-        if (metaThemeColor) {
-            metaThemeColor.content = window.getComputedStyle(document.body).backgroundColor;
-        }
-    },
-
-    getThemeClass: function(theme) {
-        return 'th-' + theme;
-    },
-
-    setFontSize: function(fontSize) {
-        document.documentElement.style.fontSize = fontSize ? (12 + fontSize * 2) + 'px' : '';
     },
 
     setLocale(loc) {
