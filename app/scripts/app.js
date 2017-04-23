@@ -35,6 +35,7 @@ ready(() => {
         .then(loadConfigs)
         .then(initModules)
         .then(loadRemoteConfig)
+        .then(loadRemoteTheme)
         .then(showApp);
 
     function loadMixins() {
@@ -79,6 +80,26 @@ ready(() => {
                 appModel.loadConfig(configParam, err => {
                     SettingsManager.setBySettings(appModel.settings);
                     if (err && !appModel.settings.get('cacheConfigSettings')) {
+                        showSettingsLoadError();
+                        reject(err);
+                    } else {
+                        resolve();
+                    }
+                });
+            } else {
+                resolve();
+            }
+        });
+    }
+
+    function loadRemoteTheme() { //  TODO: copy-pasted from settings, should be adapted to themes
+        return new Promise((resolve, reject) => {
+            ThemingManager.setByTheme(appModel.theme);
+            const configParam = getConfigParam();
+            if (configParam) {
+                appModel.loadConfig(configParam, err => {
+                    ThemingManager.setByTheme(appModel.theme);
+                    if (err && !appModel.theme.get('cacheConfigTheming')) {
                         showSettingsLoadError();
                         reject(err);
                     } else {
