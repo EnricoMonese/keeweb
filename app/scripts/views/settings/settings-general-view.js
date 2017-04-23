@@ -19,9 +19,7 @@ const SettingsGeneralView = Backbone.View.extend({
     template: require('templates/settings/settings-general.hbs'),
 
     events: {
-        'change .settings__general-theme': 'changeTheme',
         'change .settings__general-locale': 'changeLocale',
-        'change .settings__general-font-size': 'changeFontSize',
         'change .settings__general-expand': 'changeExpandGroups',
         'change .settings__general-auto-update': 'changeAutoUpdate',
         'change .settings__general-idle-minutes': 'changeIdleMinutes',
@@ -33,8 +31,6 @@ const SettingsGeneralView = Backbone.View.extend({
         'change .settings__general-lock-on-copy': 'changeLockOnCopy',
         'change .settings__general-lock-on-auto-type': 'changeLockOnAutoType',
         'change .settings__general-table-view': 'changeTableView',
-        'change .settings__general-colorful-icons': 'changeColorfulIcons',
-        'change .settings__general-titlebar-style': 'changeTitlebarStyle',
         'click .settings__general-update-btn': 'checkUpdate',
         'click .settings__general-restart-btn': 'restartApp',
         'click .settings__general-download-update-btn': 'downloadUpdate',
@@ -61,11 +57,8 @@ const SettingsGeneralView = Backbone.View.extend({
         const storageProviders = this.getStorageProviders();
 
         this.renderTemplate({
-            themes: _.mapObject(SettingsManager.allThemes, theme => Locale[theme]),
-            activeTheme: AppSettingsModel.instance.get('theme'),
             locales: SettingsManager.allLocales,
             activeLocale: SettingsManager.activeLocale,
-            fontSize: AppSettingsModel.instance.get('fontSize'),
             expandGroups: AppSettingsModel.instance.get('expandGroups'),
             canClearClipboard: !!Launcher,
             clipboardSeconds: AppSettingsModel.instance.get('clipboardSeconds'),
@@ -93,9 +86,6 @@ const SettingsGeneralView = Backbone.View.extend({
             updateFound: updateFound,
             updateManual: updateManual,
             releaseNotesLink: Links.ReleaseNotes,
-            colorfulIcons: AppSettingsModel.instance.get('colorfulIcons'),
-            supportsTitleBarStyles: FeatureDetector.supportsTitleBarStyles(),
-            titlebarStyle: AppSettingsModel.instance.get('titlebarStyle'),
             storageProviders: storageProviders
         });
         this.renderProviderViews(storageProviders);
@@ -168,11 +158,6 @@ const SettingsGeneralView = Backbone.View.extend({
         }));
     },
 
-    changeTheme: function(e) {
-        const theme = e.target.value;
-        AppSettingsModel.instance.set('theme', theme);
-    },
-
     changeLocale: function(e) {
         const locale = e.target.value;
         if (locale === '...') {
@@ -185,16 +170,6 @@ const SettingsGeneralView = Backbone.View.extend({
             return;
         }
         AppSettingsModel.instance.set('locale', locale);
-    },
-
-    changeFontSize: function(e) {
-        const fontSize = +e.target.value;
-        AppSettingsModel.instance.set('fontSize', fontSize);
-    },
-
-    changeTitlebarStyle: function(e) {
-        const titlebarStyle = e.target.value;
-        AppSettingsModel.instance.set('titlebarStyle', titlebarStyle);
     },
 
     changeClipboard: function(e) {
@@ -253,12 +228,6 @@ const SettingsGeneralView = Backbone.View.extend({
     changeTableView: function(e) {
         const tableView = e.target.checked || false;
         AppSettingsModel.instance.set('tableView', tableView);
-        Backbone.trigger('refresh');
-    },
-
-    changeColorfulIcons: function(e) {
-        const colorfulIcons = e.target.checked || false;
-        AppSettingsModel.instance.set('colorfulIcons', colorfulIcons);
         Backbone.trigger('refresh');
     },
 

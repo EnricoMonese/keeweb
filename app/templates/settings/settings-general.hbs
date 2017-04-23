@@ -35,8 +35,7 @@
         {{#if updateFound}}<button class="settings__general-update-found-btn">{{res 'setGenDownloadAndRestart'}}</button>{{/if}}
     </div>
     {{/if}}
-
-    <h2>{{res 'setGenAppearance'}}</h2>
+    <h2>{{res 'setGenLocale'}}</h2>
     {{#if locales}}
     <div>
         <label for="settings__general-locale">{{res 'setGenLocale'}}:</label>
@@ -48,46 +47,6 @@
         </select>
     </div>
     {{/if}}
-    <div>
-        <label for="settings__general-theme">{{res 'setGenTheme'}}:</label>
-        <select class="settings__general-theme settings__select input-base" id="settings__general-theme">
-            {{#each themes as |name key|}}
-            <option value="{{key}}" {{#ifeq key ../activeTheme}}selected{{/ifeq}}>{{name}}</option>
-            {{/each}}
-        </select>
-    </div>
-    <div>
-        <label for="settings__general-font-size">{{res 'setGenFontSize'}}:</label>
-        <select class="settings__general-font-size settings__select input-base" id="settings__general-font-size">
-            <option value="0" {{#ifeq fontSize 0}}selected{{/ifeq}}>{{res 'setGenFontSizeNormal'}}</option>
-            <option value="1" {{#ifeq fontSize 1}}selected{{/ifeq}}>{{res 'setGenFontSizeLarge'}}</option>
-            <option value="2" {{#ifeq fontSize 2}}selected{{/ifeq}}>{{res 'setGenFontSizeLargest'}}</option>
-        </select>
-    </div>
-    {{#if supportsTitleBarStyles}}
-    <div>
-      <label for="settings__general-titlebar-style">{{res 'setGenTitlebarStyle'}}:</label>
-      <select class="settings__general-titlebar-style settings__select input-base" id="settings__general-titlebar-style">
-        <option value="default" {{#ifeq titlebarStyle 'default'}}selected{{/ifeq}}>{{res 'setGenTitlebarStyleDefault'}}</option>
-        <option value="hidden" {{#ifeq titlebarStyle 'hidden'}}selected{{/ifeq}}>{{res 'setGenTitlebarStyleHidden'}}</option>
-        <option value="hidden-inset" {{#ifeq titlebarStyle 'hidden-inset'}}selected{{/ifeq}}>{{res 'setGenTitlebarStyleHiddenInset'}}</option>
-      </select>
-    </div>
-    {{/if}}
-    <div>
-        <input type="checkbox" class="settings__input input-base settings__general-expand" id="settings__general-expand" {{#if expandGroups}}checked{{/if}} />
-        <label for="settings__general-expand">{{res 'setGenShowSubgroups'}}</label>
-    </div>
-    {{#if canSetTableView}}
-    <div>
-        <input type="checkbox" class="settings__input input-base settings__general-table-view" id="settings__general-table-view" {{#if tableView}}checked{{/if}} />
-        <label for="settings__general-table-view">{{res 'setGenTableView'}}</label>
-    </div>
-    {{/if}}
-    <div>
-        <input type="checkbox" class="settings__input input-base settings__general-colorful-icons" id="settings__general-colorful-icons" {{#if colorfulIcons}}checked{{/if}} />
-        <label for="settings__general-colorful-icons">{{res 'setGenColorfulIcons'}}</label>
-    </div>
 
     <h2>{{res 'setGenFunction'}}</h2>
     <div>
