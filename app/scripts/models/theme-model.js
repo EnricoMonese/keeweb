@@ -3,6 +3,12 @@ const SettingsStore = require('../comp/settings-store');
 
 const ThemeModel = Backbone.Model.extend({
     defaults: {
+        theme: 'fb',
+        fontSize: 0,
+        colorfulIcons: false,
+        titlebarStyle: 'default',
+        tableView: false,
+
         colorMain: '#282C34',
         mediumColor: '#ABB2BF',
         textColor: '#D7DAE0',
@@ -11,7 +17,7 @@ const ThemeModel = Backbone.Model.extend({
 
         mutePercent: 30,
         lightBorderPercent: 10,
-        modalOpacity: .9,
+        modalOpacity: 0.9,
         colorLightnessShift: 0
     },
 
