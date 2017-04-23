@@ -28,7 +28,6 @@ const ThemeModel = Backbone.Model.extend({
     load: function() {
         return SettingsStore.load('theming').then(data => {
             if (data) {
-                this.upgrade(data);
                 this.set(data, {silent: true});
             }
         });
