@@ -3,6 +3,8 @@ const SettingsManager = require('../../comp/settings-manager');
 const AppSettingsModel = require('../../models/app-settings-model');
 const FeatureDetector = require('../../util/feature-detector');
 const Locale = require('../../util/locale');
+// const Logger = require('../../util/logger');
+const ChangeCssUtil = require('../../util/change-css-util');
 
 const SettingsThemeView = Backbone.View.extend({
     template: require('templates/settings/settings-theming.hbs'),
@@ -12,7 +14,8 @@ const SettingsThemeView = Backbone.View.extend({
         'change .settings__general-font-size': 'changeFontSize',
         'change .settings__general-colorful-icons': 'changeColorfulIcons',
         'change .settings__general-titlebar-style': 'changeTitlebarStyle',
-        'change .settings__general-table-view': 'changeTableView'
+        'change .settings__general-table-view': 'changeTableView',
+        'click .settings_main-color-set-btn': 'setMainColor'
     },
 
     render: function() {
@@ -26,6 +29,7 @@ const SettingsThemeView = Backbone.View.extend({
             canSetTableView: !FeatureDetector.isMobile,
             tableView: AppSettingsModel.instance.get('tableView')
         });
+        ChangeCssUtil.init();
     },
 
     changeTheme: function(e) {
@@ -53,7 +57,17 @@ const SettingsThemeView = Backbone.View.extend({
         const tableView = e.target.checked || false;
         AppSettingsModel.instance.set('tableView', tableView);
         Backbone.trigger('refresh');
+    },
+
+    setMainColor: function(e) {
+        const colorTextBox = this.$el.find('#settings__theming-main-color');
+        const colorText = colorTextBox.val().trim();
+        if (!colorText) {
+            return;
+        }
+        ChangeCssUtil.changeCss('.app', 'background-color', colorText);
     }
+
 });
 
 module.exports = SettingsThemeView;

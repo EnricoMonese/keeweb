@@ -41,4 +41,12 @@
         <input type="checkbox" class="settings__input input-base settings__general-colorful-icons" id="settings__general-colorful-icons" {{#if colorfulIcons}}checked{{/if}} />
         <label for="settings__general-colorful-icons">{{res 'setGenColorfulIcons'}}</label>
     </div>
+    <h2>Colors</h2>
+    <div class="settings__theming-main-color">
+        <label for="settings__theming-main-color">Set Main Color</label>
+        <input type="text" class="settings__input input-base" id="settings__theming-main-color" value="{{mainColor}}" />
+        <button class="settings_main-color-set-btn">
+            Apply
+        </button>
+    </div>
 </div>
