@@ -1,5 +1,6 @@
 const Backbone = require('backbone');
 const AppSettingsModel = require('./app-settings-model');
+const ThemeModel = require('./theme-model');
 const MenuModel = require('./menu/menu-model');
 const EntryModel = require('./entry-model');
 const GroupModel = require('./group-model');
@@ -31,6 +32,7 @@ const AppModel = Backbone.Model.extend({
         this.filter = {};
         this.sort = 'title';
         this.settings = AppSettingsModel.instance;
+        this.theme = ThemeModel.instance;
         this.activeEntryId = null;
         this.isBeta = FeatureDetector.isBeta;
 

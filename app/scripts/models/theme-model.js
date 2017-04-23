@@ -33,6 +33,6 @@ const ThemeModel = Backbone.Model.extend({
     }
 });
 
-// ThemeModel.instance = new ThemeModel();
+ThemeModel.instance = new ThemeModel();
 
 module.exports = ThemeModel;

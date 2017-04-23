@@ -1,6 +1,7 @@
 const AppModel = require('./models/app-model');
 const AppView = require('./views/app-view');
 const AppSettingsModel = require('./models/app-settings-model');
+const ThemeModel = require('./models/theme-model');
 const UpdateModel = require('./models/update-model');
 const RuntimeDataModel = require('./models/runtime-data-model');
 const FileInfoCollection = require('./collections/file-info-collection');
@@ -44,6 +45,7 @@ ready(() => {
     function loadConfigs() {
         return Promise.all([
             AppSettingsModel.instance.load(),
+            ThemeModel.instance.load(),
             UpdateModel.instance.load(),
             RuntimeDataModel.instance.load(),
             FileInfoCollection.instance.load()
