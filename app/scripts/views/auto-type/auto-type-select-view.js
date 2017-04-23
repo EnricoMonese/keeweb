@@ -2,7 +2,7 @@ const Backbone = require('backbone');
 const Keys = require('../../const/keys');
 const KeyHandler = require('../../comp/key-handler');
 const Locale = require('../../util/locale');
-const AppSettingsModel = require('../../models/app-settings-model');
+const ThemeModel = require('../../models/theme-model');
 const EntryPresenter = require('../../presenters/entry-presenter');
 const Scrollable = require('../../mixins/scrollable');
 
@@ -43,7 +43,7 @@ const AutoTypePopupView = Backbone.View.extend({
         } else {
             topMessage = Locale.autoTypeMsgNoWindow;
         }
-        const noColor = AppSettingsModel.instance.get('colorfulIcons') ? '' : 'grayscale';
+        const noColor = ThemeModel.instance.get('colorfulIcons') ? '' : 'grayscale';
         this.entries = this.model.filter.getEntries();
         this.result = this.entries.first();
         const presenter = new EntryPresenter(null, noColor, this.result && this.result.id);

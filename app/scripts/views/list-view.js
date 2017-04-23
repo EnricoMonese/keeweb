@@ -6,6 +6,7 @@ const DropdownView = require('./dropdown-view');
 const EntryPresenter = require('../presenters/entry-presenter');
 const DragDropInfo = require('../comp/drag-drop-info');
 const AppSettingsModel = require('../models/app-settings-model');
+const ThemeModel = require('../models/theme-model');
 const Locale = require('../util/locale');
 const Format = require('../util/format');
 
@@ -77,7 +78,7 @@ const ListView = Backbone.View.extend({
         if (this.items.length) {
             const itemTemplate = this.getItemTemplate();
             const itemsTemplate = this.getItemsTemplate();
-            const noColor = AppSettingsModel.instance.get('colorfulIcons') ? '' : 'grayscale';
+            const noColor = ThemeModel.instance.get('colorfulIcons') ? '' : 'grayscale';
             const presenter = new EntryPresenter(this.getDescField(), noColor, this.model.activeEntryId);
             const columns = {};
             this.tableColumns.forEach(col => {

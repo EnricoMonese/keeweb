@@ -2,6 +2,7 @@ const Backbone = require('backbone');
 const Locale = require('../../util/locale');
 const PluginManager = require('../../plugins/plugin-manager');
 const AppSettingsModel = require('../../models/app-settings-model');
+const ThemeModel = require('../../models/theme-model');
 
 const SettingsPluginsView = Backbone.View.extend({
     template: require('templates/settings/settings-plugins.hbs'),
@@ -87,7 +88,7 @@ const SettingsPluginsView = Backbone.View.extend({
 
     useThemeClick(e) {
         const theme = $(e.target).data('theme');
-        AppSettingsModel.instance.set('theme', theme);
+        ThemeModel.instance.set('theme', theme);
     }
 });
 

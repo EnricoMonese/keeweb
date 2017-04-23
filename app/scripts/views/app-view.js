@@ -19,6 +19,7 @@ const KeyHandler = require('../comp/key-handler');
 const IdleTracker = require('../comp/idle-tracker');
 const Launcher = require('../comp/launcher');
 const SettingsManager = require('../comp/settings-manager');
+const ThemingManager = require('../comp/theming-manager');
 const Locale = require('../util/locale');
 const UpdateModel = require('../models/update-model');
 
@@ -656,11 +657,11 @@ const AppView = Backbone.View.extend({
     },
 
     setTheme: function() {
-        SettingsManager.setTheme(this.model.settings.get('theme'));
+        ThemingManager.setTheme(this.model.settings.get('theme'));
     },
 
     setFontSize: function() {
-        SettingsManager.setFontSize(this.model.settings.get('fontSize'));
+        ThemingManager.setFontSize(this.model.settings.get('fontSize'));
     },
 
     setLocale: function() {

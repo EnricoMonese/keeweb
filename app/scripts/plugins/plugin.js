@@ -5,6 +5,7 @@ const Logger = require('../util/logger');
 const SettingsManager = require('../comp/settings-manager');
 const IoCache = require('../storage/io-cache');
 const AppSettingsModel = require('../models/app-settings-model');
+const ThemeModel = require('../models/theme-model');
 const BaseLocale = require('../locales/base.json');
 
 const commonLogger = new Logger('plugin');
@@ -341,8 +342,8 @@ const Plugin = Backbone.Model.extend({
 
     removeTheme(theme) {
         delete SettingsManager.allThemes[theme.name];
-        if (AppSettingsModel.instance.get('theme') === theme.name) {
-            AppSettingsModel.instance.set('theme', 'fb');
+        if (ThemeModel.instance.get('theme') === theme.name) {
+            ThemeModel.instance.set('theme', 'fb');
         }
         delete BaseLocale[this.getThemeLocaleKey(theme.name)];
     },

@@ -1,9 +1,7 @@
 const Backbone = require('backbone');
-const SettingsManager = require('../../comp/settings-manager');
-const AppSettingsModel = require('../../models/app-settings-model');
+const ThemeModel = require('../../models/theme-model');
 const FeatureDetector = require('../../util/feature-detector');
 const Locale = require('../../util/locale');
-// const Logger = require('../../util/logger');
 const ThemingManager = require('../../comp/theming-manager');
 
 const SettingsThemeView = Backbone.View.extend({
@@ -20,41 +18,41 @@ const SettingsThemeView = Backbone.View.extend({
 
     render: function() {
         this.renderTemplate({
-            themes: _.mapObject(SettingsManager.allThemes, theme => Locale[theme]),
-            activeTheme: AppSettingsModel.instance.get('theme'),
-            fontSize: AppSettingsModel.instance.get('fontSize'),
-            colorfulIcons: AppSettingsModel.instance.get('colorfulIcons'),
+            themes: _.mapObject(ThemingManager.allThemes, theme => Locale[theme]),
+            activeTheme: ThemeModel.instance.get('theme'),
+            fontSize: ThemeModel.instance.get('fontSize'),
+            colorfulIcons: ThemeModel.instance.get('colorfulIcons'),
             supportsTitleBarStyles: FeatureDetector.supportsTitleBarStyles(),
-            titlebarStyle: AppSettingsModel.instance.get('titlebarStyle'),
+            titlebarStyle: ThemeModel.instance.get('titlebarStyle'),
             canSetTableView: !FeatureDetector.isMobile,
-            tableView: AppSettingsModel.instance.get('tableView')
+            tableView: ThemeModel.instance.get('tableView')
         });
     },
 
     changeTheme: function(e) {
         const theme = e.target.value;
-        AppSettingsModel.instance.set('theme', theme);
+        ThemeModel.instance.set('theme', theme);
     },
 
     changeFontSize: function(e) {
         const fontSize = +e.target.value;
-        AppSettingsModel.instance.set('fontSize', fontSize);
+        ThemeModel.instance.set('fontSize', fontSize);
     },
 
     changeColorfulIcons: function(e) {
         const colorfulIcons = e.target.checked || false;
-        AppSettingsModel.instance.set('colorfulIcons', colorfulIcons);
+        ThemeModel.instance.set('colorfulIcons', colorfulIcons);
         Backbone.trigger('refresh');
     },
 
     changeTitlebarStyle: function(e) {
         const titlebarStyle = e.target.value;
-        AppSettingsModel.instance.set('titlebarStyle', titlebarStyle);
+        ThemeModel.instance.set('titlebarStyle', titlebarStyle);
     },
 
     changeTableView: function(e) {
         const tableView = e.target.checked || false;
-        AppSettingsModel.instance.set('tableView', tableView);
+        ThemeModel.instance.set('tableView', tableView);
         Backbone.trigger('refresh');
     },
 
