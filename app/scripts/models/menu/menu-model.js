@@ -44,6 +44,7 @@ const MenuModel = Backbone.Model.extend({
         this.generalSection = new MenuSectionModel([{ locTitle: 'menuSetGeneral', icon: 'cog', page: 'general', active: true }]);
         this.shortcutsSection = new MenuSectionModel([{ locTitle: 'shortcuts', icon: 'keyboard-o', page: 'shortcuts' }]);
         this.pluginsSection = new MenuSectionModel([{ locTitle: 'plugins', icon: 'puzzle-piece', page: 'plugins' }]);
+        this.themingSection = new MenuSectionModel([{ locTitle: 'theming', icon: 'paint-brush', page: 'theming' }]);
         this.aboutSection = new MenuSectionModel([{ locTitle: 'menuSetAbout', icon: 'info', page: 'about' }]);
         this.helpSection = new MenuSectionModel([{ locTitle: 'help', icon: 'question', page: 'help' }]);
         this.filesSection = new MenuSectionModel();
@@ -52,6 +53,7 @@ const MenuModel = Backbone.Model.extend({
             this.generalSection,
             this.shortcutsSection,
             this.pluginsSection,
+            this.themingSection,
             this.aboutSection,
             this.helpSection,
             this.filesSection
